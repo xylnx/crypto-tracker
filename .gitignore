@@ -21,3 +21,39 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.DS_Store
+.env
+.config.js
+.config
+node_modules
+dist
+
+# Local files + dirs
+TD.md
+td.md
+notes
+continue
+
+# VIM
+# Ignore vim swap files
+[._]*.s[a-v][a-z]
+!*.svg  # comment out if you don't need vector files
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+# Session
+Session.vim
+Sessionx.vim
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+# Persistent undo
+[._]*.un~
+
+# Project specific
+.expo
+
