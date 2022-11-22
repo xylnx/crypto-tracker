@@ -3,12 +3,31 @@
   grid-template-columns: 1.5fr 3fr;
   gap: 16px;
 }
-.current-price {
+
+.current-prices .current-price {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 0px;
+  gap: var(--gap);
 }
 
 .current-price__coin-name {
   color: var(--clr-accent);
+  text-transform: capitalize;
+}
+
+.compare-prices {
+  .prices {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+
+    &__current-price,
+    &__historic-price {
+      display: flex;
+      gap: var(--gap);
+    }
+  }
+  .coin-price--historic {
+    display: inline;
+  }
 }

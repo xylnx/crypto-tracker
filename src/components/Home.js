@@ -63,7 +63,11 @@ const Home = () => {
           </div>
         </LayoutCard>
         <ComparePrices coin={coin} />
-        <LayoutCard cardTitle="Chart" classNames="chart" fullWidth={true}>
+        <LayoutCard
+          cardTitle={`Price trend since DATE`}
+          classNames="chart"
+          fullWidth={true}
+        >
           <Chart />
         </LayoutCard>
         <LayoutCard cardTitle="Table" classNames="table" fullWidth={true}>

@@ -11,7 +11,7 @@ const DatePicker = ({ onChangeDate, dpClasses = '', dpLabel } = {}) => {
 
   return (
     <div className={`date-picker ${dpClasses}`}>
-      <label htmlFor="datePicker" className="date-picker__label">
+      <label htmlFor="datePicker" className="date-picker__label sr-only">
         {dpLabel ? dpLabel : 'Pick a date:'}
       </label>
       <input
