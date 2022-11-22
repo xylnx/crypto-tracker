@@ -59,31 +59,29 @@ const ComparePrices = () => {
 
   return (
     <div className="compare-prices flow">
-      <h1 className="compare-prices__heading">
-        Compare Prices:{' '}
-        <span className="compare-prices__heading--coin">{coin}</span>
-      </h1>
-      <div className="compoare-prices__choose-currency grid">
-        <button
-          className="toggle active"
-          onClick={(e) => {
-            setCoin('bitcoin');
-            toggleActive(e);
-          }}
-        >
-          BITCOIN
-        </button>
-        <button
-          className="toggle"
-          onClick={(e) => {
-            setCoin('ethereum');
-            toggleActive(e);
-          }}
-        >
-          ETHEREUM
-        </button>
-      </div>
+      <LayoutCard cardTitle={`Price trend since ${histDate}:`} sub={coin}>
+        <div className="compoare-prices__choose-currency grid">
+          <button
+            className="toggle active"
+            onClick={(e) => {
+              setCoin('bitcoin');
+              toggleActive(e);
+            }}
+          >
+            BITCOIN
+          </button>
+          <button
+            className="toggle"
+            onClick={(e) => {
+              setCoin('ethereum');
+              toggleActive(e);
+            }}
+          >
+            ETHEREUM
+          </button>
+        </div>
 
+        {/*
       <div className="compare-prices__choose-time-span grid">
         <button
           className="toggle active"
@@ -107,31 +105,24 @@ const ComparePrices = () => {
           onChangeDate={handleChangeDate}
           dpClasses="toggle grid-fw"
         />
-      </div>
 
-      <div className="compare-prices__cards">
-        <LayoutCard cardTitle={curDate} sub={coin}>
+      </div>
+      */}
+
+        <div className="current-price">
+          <span className="current-price__coin-name">{coin}</span>
           <CoinPrice coin={coin} onPriceChange={handleChangeCurPrice} />
-        </LayoutCard>
+        </div>
 
-        <>
-          <LayoutCard cardTitle={histDate} sub={coin}>
-            <HistoricCoinPrice
-              coin={coin}
-              dateOptions={dateOptions}
-              onPriceChange={handleChangeHistPrice}
-            />
-          </LayoutCard>
+        <span>{histDate}: </span>
+        <HistoricCoinPrice
+          coin={coin}
+          dateOptions={dateOptions}
+          onPriceChange={handleChangeHistPrice}
+        />
 
-          <LayoutCard cardTitle="Change" fullWidth={true}>
-            <div>{valChange} %</div>
-          </LayoutCard>
-        </>
-      </div>
-      <div class="grid">
-        <Button btnDest="/" btnCopy="Go back home" />
-        <Button btnDest="/price-table" btnCopy="Show historic price table" />
-      </div>
+        {valChange && <div>{valChange} %</div>}
+      </LayoutCard>
     </div>
   );
 };
