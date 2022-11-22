@@ -90,6 +90,12 @@ button {
   }
 }
 
+// Header
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
 // Loading spinner
 .spinner {
   text-align: center;

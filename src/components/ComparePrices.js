@@ -16,10 +16,10 @@ import { LayoutCard } from './LayoutCard';
 
 import './ComparePrices.scss';
 
-const ComparePrices = () => {
+const ComparePrices = ({ coin }) => {
   const curDate = 'Today';
   const [histDate, setHistDate] = useState(null);
-  const [coin, setCoin] = useState('bitcoin');
+  // const [coin, setCoin] = useState('bitcoin');
   const [dateOptions, setDateOptions] = useState({ offsetDay: -7 });
 
   const [curPrice, setCurPrice] = useState(null);
@@ -60,27 +60,6 @@ const ComparePrices = () => {
   return (
     <div className="compare-prices flow">
       <LayoutCard cardTitle={`Price trend since ${histDate}:`} sub={coin}>
-        <div className="compoare-prices__choose-currency grid">
-          <button
-            className="toggle active"
-            onClick={(e) => {
-              setCoin('bitcoin');
-              toggleActive(e);
-            }}
-          >
-            BITCOIN
-          </button>
-          <button
-            className="toggle"
-            onClick={(e) => {
-              setCoin('ethereum');
-              toggleActive(e);
-            }}
-          >
-            ETHEREUM
-          </button>
-        </div>
-
         {/*
       <div className="compare-prices__choose-time-span grid">
         <button

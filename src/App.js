@@ -18,7 +18,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="app-heading">CRYPTO TRACKER</h1>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Home />} />
