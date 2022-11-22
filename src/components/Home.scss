@@ -1,0 +1,14 @@
+.home {
+  display: grid;
+  grid-template-columns: 1.5fr 3fr;
+  gap: 16px;
+}
+.current-price {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0px;
+}
+
+.current-price__coin-name {
+  color: var(--clr-accent);
+}
