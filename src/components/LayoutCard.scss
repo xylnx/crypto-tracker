@@ -1,0 +1,10 @@
+.card {
+  background: var(--clr-secondary-400);
+  padding: 24px;
+  border-radius: var(--border-radius);
+  color: var(--clr-text-400);
+}
+
+.card__title {
+  color: var(--clr-accent);
+}

@@ -1,0 +1,170 @@
+/* CUSTOM PROPERTIES */
+:root {
+  --ct-ff-400: sans-serif;
+
+  --clr-primary-400: #999;
+  --clr-secondary-400: #666;
+
+  --clr-primary-400: #444;
+  --clr-secondary-400: #333;
+  --clr-text-400: #f1f2f4;
+  --clr-accent: #f7931a;
+  --clr-sn: #353a90;
+
+  --border: 1px solid currentColor;
+  --border-radius: 2px;
+  --gap: 8px;
+  --flow-space: 8px;
+
+  --transition: all 0.3s ease-in;
+}
+
+/* RESET */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
+
+button,
+a {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* BASIC STYLES */
+body {
+  margin: 0;
+  font-family: var(--ct-ff-400);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: var(--clr-primary-400);
+  color: var(--clr-text-400);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 480px;
+  margin: auto;
+  margin-top: 48px;
+}
+
+code {
+  font-family: monospace;
+}
+
+.app-heading {
+  font-size: 48px;
+  color: var(--clr-accent);
+}
+
+button {
+  padding: 1em;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+
+  &:hover,
+  &.active {
+    background-color: var(--clr-text-400);
+    color: var(--clr-primary-400);
+    transition: all 0.2s ease-in;
+  }
+}
+
+// Loading spinner
+.spinner {
+  text-align: center;
+}
+
+.bi-arrow-clockwise {
+  animation: spin 1s linear infinite;
+  height: 48px;
+  width: 48px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Date picker
+.date-picker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1em;
+  border: var(--border);
+}
+
+.date-picker__label {
+  display: flex;
+  align-items: center;
+}
+.date-picker__input {
+  height: 24px;
+}
+
+// Button
+.btn {
+  background: transparent;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  border-color: var(--clr-accent);
+  color: var(--clr-primary-400);
+  background-color: var(--clr-accent);
+  padding: 1em;
+  transition: var(--transition);
+
+  &:hover {
+    color: var(--clr-accent);
+    background-color: var(--clr-primary-400);
+
+    transition: var(--transition);
+  }
+
+  &-link {
+    text-decoration: none;
+    display: inline-block;
+  }
+}
+
+// Utilities
+.flow > * ~ * {
+  margin-top: var(--flow-space);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap);
+}
+
+.grid-fw {
+  grid-column: 1 / -1;
+}
+
+.text-accent {
+  color: var(--clr-accent);
+}

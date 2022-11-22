@@ -1,0 +1,39 @@
+// Hooks
+import { useState, useEffect } from 'react';
+// Custom Hooks
+import { useFetch } from '../hooks/useFetch';
+
+// Components
+import { Spinner } from './Spinner';
+
+const CoinPrice = ({ coin }) => {
+  const _dev = process.env.REACT_APP_DEV_MODE === 'true';
+  const url = _dev
+    ? `http://localhost:3004/price/${coin}`
+    : `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=eur`;
+
+  const [coinPrice, setCoinPrice] = useState(null);
+  const { data, isPending } = useFetch(url);
+
+  useEffect(() => {
+    if (!data) return;
+    setCoinPrice(data[coin].eur);
+  }, [data]);
+
+  return (
+    <div>
+      {isPending && (
+        <div>
+          <Spinner />
+        </div>
+      )}
+      {!isPending && data && (
+        <div className="coin-price">
+          {coin.toUpperCase()} price: {coinPrice}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export { CoinPrice };

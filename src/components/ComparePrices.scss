@@ -1,0 +1,11 @@
+.compare-prices {
+  &__heading--coin {
+    color: var(--clr-accent);
+    text-transform: capitalize;
+  }
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap);
+  }
+}
