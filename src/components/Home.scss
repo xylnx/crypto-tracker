@@ -31,3 +31,14 @@
     display: inline;
   }
 }
+
+.chart-and-table {
+  .spinner {
+    display: flex;
+    justify-content: center;
+    svg {
+      width: 56px;
+      height: 56px;
+    }
+  }
+}
