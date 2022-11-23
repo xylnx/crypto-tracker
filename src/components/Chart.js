@@ -64,6 +64,7 @@ function Chart({ coin, startDate, endDate }) {
   // const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
   const _url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=eur&from=${startDate}&to=${endDate}`;
 
+  console.log({ _url });
   const { data: coinData, isPending } = useFetch(_url);
 
   useEffect(() => {
@@ -102,13 +103,11 @@ function Chart({ coin, startDate, endDate }) {
 }
 
 function filterDates(d) {
+  console.log({ d });
   // TODO: Catch the 1 day edge case
-  console.log(d.prices);
   const lastIndex = d.prices.length - 1;
-  console.log(lastIndex);
   return d.prices.filter((entry, index, array) => {
     const date = new Date(entry[0]);
-    console.log(date);
     if (index === lastIndex) {
       return [entry[0], entry[1]];
     }
@@ -118,14 +117,12 @@ function filterDates(d) {
 }
 
 function getPrices(_coinData) {
-  console.log(_coinData);
   return _coinData.map((entry, index, array) => {
     return entry[1].toFixed(2);
   });
 }
 
 function getDates(_coinData) {
-  console.log(_coinData);
   return _coinData.map((entry, index, array) => {
     return new Date(entry[0]).toLocaleDateString('de-DE');
   });
