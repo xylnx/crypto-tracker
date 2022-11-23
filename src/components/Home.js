@@ -10,6 +10,8 @@ import { Chart } from './Chart';
 import { HistoricPriceTable } from './HistoricPriceTable';
 import { IconBitcoin } from './icons/IconBitcoin';
 import { IconEthereum } from './icons/IconEthereum';
+import { IconTable } from './icons/IconTable';
+import { IconChart } from './icons/IconChart';
 
 // Helpers
 import { toggleActive } from '../helpers/toogleActive';
@@ -24,13 +26,9 @@ const Home = () => {
   const [endDate, setEndDate] = useState(null);
   const [isTable, setIsTable] = useState(false);
 
-  const toGermanDateString = (timestamp) => {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString('de-DE');
-  };
-
   const handleChangeStartDate = (dateStr) => {
     setStartDate(toUnixTimestamp(dateStr));
+    console.log('Change Start Date');
   };
 
   const handleChangeEndDate = (dateStr) => {
@@ -82,7 +80,7 @@ const Home = () => {
         {/* Compare prices: one week/month/any date */}
         <ComparePrices coin={coin} />
 
-        <LayoutCard classNames="currency-symbols">
+        <LayoutCard classNames="currency-symbols card--blanche">
           {coin === 'bitcoin' ? <IconBitcoin /> : <IconEthereum />}
         </LayoutCard>
 
@@ -93,14 +91,21 @@ const Home = () => {
           fullWidth={true}
         >
           <button onClick={toggleTable}>
+            {!isTable && <IconTable />}
+            {isTable && <IconChart />}
             {isTable ? 'Show chart' : 'Show Table'}
           </button>
           <div className="price-trend__pick-dates">
             <DatePicker
               onChangeDate={handleChangeStartDate}
               dpLabel="Start Date"
+              id="picker-1"
             />
-            <DatePicker onChangeDate={handleChangeEndDate} dpLabel="End Date" />
+            <DatePicker
+              id="picker-2"
+              onChangeDate={handleChangeEndDate}
+              dpLabel="End Date"
+            />
           </div>
           {!isTable && (
             <Chart coin={coin} startDate={startDate} endDate={endDate} />

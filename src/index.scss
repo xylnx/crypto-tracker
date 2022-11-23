@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 /* CUSTOM PROPERTIES */
 :root {
-  --ct-ff-400: sans-serif;
+  --ct-ff-400: 'Open Sans', sans-serif;
 
   --clr-primary-400: #999;
   --clr-secondary-400: #666;
@@ -142,6 +145,7 @@ header {
 }
 
 .date-picker__label {
+  font-weight: bold;
   display: flex;
   align-items: center;
   border: 1px solid;
@@ -223,10 +227,13 @@ header {
   position: relative;
 
   button {
+    display: flex;
+    align-items: center;
     position: absolute;
     right: 24px;
     top: 24px;
     margin-top: 0;
+    gap: var(--gap);
   }
 
   &__pick-dates {
