@@ -12,12 +12,6 @@ function createDateString({ date = 0, offsetDay = 0, offsetMonth = 0 } = {}) {
     _date.getDate() + offsetDay
   );
 
-  console.log('*************');
-  console.log(prevDate);
-  console.log({ offsetMonth });
-  console.log({ offsetDay });
-  console.log('*************');
-
   const year = prevDate.getFullYear();
   const month = _dateAddZero(prevDate.getMonth() + 1); // JS month are 0-based
   const day = _dateAddZero(prevDate.getDate());
@@ -25,16 +19,6 @@ function createDateString({ date = 0, offsetDay = 0, offsetMonth = 0 } = {}) {
   // From API docs:
   // The date of data snapshot in dd-mm-yyyy eg. 30-12-2017
   const dateString = `${day}-${month}-${year}`;
-
-  console.log('*************');
-  console.log('###');
-  console.log(prevDate);
-  console.log({ year });
-  console.log({ month });
-  console.log({ day });
-  console.log(dateString);
-  console.log('*************');
-
   return dateString;
 }
 
