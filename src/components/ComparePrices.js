@@ -46,8 +46,8 @@ const ComparePrices = ({ coin }) => {
 
   return (
     <div className="compare-prices">
-      <LayoutCard cardTitle={`${coin} since ${histDate}`} sub={coin}>
-        <div class="compare-prices__container">
+      <LayoutCard cardTitle={`${coin} price since ${histDate}`} sub={coin}>
+        <div className="compare-prices__container">
           <div className="compare-prices__choose-time-span">
             <button
               className="toggle active"
@@ -75,12 +75,12 @@ const ComparePrices = ({ coin }) => {
 
           <div className="prices">
             <div className="prices__current-price">
-              <span class="text-accent">Current Price:</span>
+              <span className="text-accent">Current Price:</span>
               <CoinPrice coin={coin} onPriceChange={handleChangeCurPrice} />
             </div>
 
             <div className="prices__historic-price">
-              <span class="text-accent">{histDate}: </span>
+              <span className="text-accent">{histDate}: </span>
               <HistoricCoinPrice
                 coin={coin}
                 dateOptions={dateOptions}
@@ -90,7 +90,7 @@ const ComparePrices = ({ coin }) => {
 
             {valChange && (
               <div className="prices__difference">
-                <span class="text-accent">Change: </span>
+                <span className="text-accent">Change: </span>
                 <span>{valChange} %</span>
               </div>
             )}
