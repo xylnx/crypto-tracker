@@ -107,8 +107,8 @@ header {
 .bi-arrow-clockwise {
   animation: spin 1s linear infinite;
   display: block;
-  height: 24px;
-  width: 24px;
+  height: 16px;
+  width: 16px;
 }
 
 @keyframes spin {
@@ -124,16 +124,42 @@ header {
 .date-picker {
   height: 36.5px;
   border: var(--border);
+  color: var(--clr-text-400);
+  padding: 4px;
+
+  &.label-visible {
+    display: flex;
+    gap: var(--gap);
+    border: 0;
+
+    .date-picker__input {
+      border: var(--border);
+      color: var(--clr-text-400);
+      width: 240px;
+    }
+  }
 }
 
 .date-picker__label {
   display: flex;
   align-items: center;
+  color: var(--clr-accent);
 }
+
 .date-picker__input {
   height: 100%;
   width: 100%;
+  padding: 4px;
   border: 0;
+  background-color: transparent;
+  color: #f1f2f4;
+}
+
+.date-picker__input::-webkit-calendar-picker-indicator {
+  background-color: var(--clr-text-400);
+  border-radius: var(--border-radius);
+  height: 18px;
+  width: 18px;
 }
 
 // Button
