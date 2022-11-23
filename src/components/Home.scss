@@ -1,6 +1,6 @@
 .home {
   display: grid;
-  grid-template-columns: 1.5fr 3fr;
+  grid-template-columns: 1.5fr 2.5fr 0.5fr;
   gap: 16px;
 }
 
@@ -29,6 +29,15 @@
   }
   .coin-price--historic {
     display: inline;
+  }
+}
+
+.currency-symbols {
+  svg {
+    height: 72px;
+    width: 72px;
+    display: flex;
+    color: var(--clr-accent);
   }
 }
 
