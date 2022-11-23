@@ -46,7 +46,7 @@ const ComparePrices = ({ coin }) => {
 
   return (
     <div className="compare-prices">
-      <LayoutCard cardTitle={`${coin} since ${histDate}:`} sub={coin}>
+      <LayoutCard cardTitle={`${coin} since ${histDate}`} sub={coin}>
         <div class="compare-prices__container">
           <div className="compare-prices__choose-time-span">
             <button
