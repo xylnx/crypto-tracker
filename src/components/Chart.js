@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+
+// Custom Hooks
 import { useFetch } from '../hooks/useFetch';
+
+import { Spinner } from './Spinner';
 
 import {
   Chart as ChartJS,
@@ -43,11 +47,12 @@ const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      // data: ['12', '19', '3', '5', '2', '3'],
+      borderColor: '#f1f2f4',
+      backgroundColor: '#f1f2f4',
     },
     {
-      label: 'Dataset 2',
+      // label: 'Dataset 2',
       // data: ['12', '19', '3', '5', '2', '3'].reverse(),
       borderColor: 'rgb(53, 162, 235)',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -55,21 +60,25 @@ const data = {
   ],
 };
 
-function Chart() {
+function Chart({ coin, startDate, endDate }) {
   const [chartData, setChartData] = useState(data);
-  const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
-  const { data: coinData, isPending } = useFetch(_devUrl);
+  const [filteredCoinData, setFilterdCoinData] = useState(null);
+  // const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
+  const _url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=eur&from=${startDate}&to=${endDate}`;
+
+  const { data: coinData, isPending } = useFetch(_url);
 
   useEffect(() => {
-    if (coinData) {
-      const _prices = setChartData((prevChartData) => {
+    if (filteredCoinData) {
+      setChartData((prevChartData) => {
         return {
           ...prevChartData,
-          labels: getDates(coinData),
+          labels: getDates(filteredCoinData),
           datasets: [
             {
               ...prevChartData.datasets[0],
-              data: getPrices(coinData),
+              label: coin,
+              data: getPrices(filteredCoinData),
             },
             {
               ...prevChartData.datasets[1],
@@ -78,9 +87,20 @@ function Chart() {
         };
       });
     }
+  }, [filteredCoinData, coin]);
+
+  useEffect(() => {
+    if (coinData) {
+      setFilterdCoinData(filterDates(coinData));
+    }
   }, [coinData]);
 
-  return <Line options={options} data={chartData} />;
+  return (
+    <>
+      {isPending && <Spinner />}
+      {!isPending && <Line options={options} data={chartData} />}
+    </>
+  );
 }
 
 function filterDates(d) {
@@ -101,29 +121,16 @@ function filterDates(d) {
 
 function getPrices(_coinData) {
   console.log(_coinData);
-  return _coinData.data.prices.map((entry, index, array) => {
+  return _coinData.map((entry, index, array) => {
     return entry[1].toFixed(2);
   });
 }
 
 function getDates(_coinData) {
   console.log(_coinData);
-  return _coinData.data.prices.map((entry, index, array) => {
+  return _coinData.map((entry, index, array) => {
     return new Date(entry[0]).toLocaleDateString('de-DE');
   });
 }
-
-/*
-const Chart = ({ startDate, endDate, coin }) => {
-  const _url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=eur&from=${startDate}&to=${endDate}`;
-
-  const labels = ['Jan', 'Feb', 'March', 'June'];
-  return (
-    <div className="chart">
-      <Line height={400} width={600} data={{ labels }} />
-    </div>
-  );
-};
-*/
 
 export { Chart };
