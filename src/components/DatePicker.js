@@ -13,7 +13,6 @@ const DatePicker = ({
 
   useEffect(() => {
     setMaxDate(); // set max date to today's date
-    catchClickOnLabel();
   }, []);
 
   return (
