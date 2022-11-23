@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 
 // Components
+import { Header } from './header/Header';
+
 import { CoinPrice } from './CoinPrice';
 import { LayoutCard } from './LayoutCard';
 import { ComparePrices } from './ComparePrices';
@@ -14,7 +16,6 @@ import { IconTable } from './icons/IconTable';
 import { IconChart } from './icons/IconChart';
 
 // Helpers
-import { toggleActive } from '../helpers/toogleActive';
 import { toUnixTimestamp } from '../helpers/toUnixTimestamp';
 
 // Styles
@@ -26,6 +27,7 @@ const Home = () => {
   const [endDate, setEndDate] = useState(null);
   const [isTable, setIsTable] = useState(false);
 
+  console.log({ coin });
   const handleChangeStartDate = (dateStr) => {
     setStartDate(toUnixTimestamp(dateStr));
     console.log('Change Start Date');
@@ -41,29 +43,7 @@ const Home = () => {
 
   return (
     <>
-      <header>
-        <h1 className="app-heading">CRYPTO TRACKER</h1>
-        <div className="compoare-prices__choose-currency grid">
-          <button
-            className="toggle active"
-            onClick={(e) => {
-              setCoin('bitcoin');
-              toggleActive(e);
-            }}
-          >
-            BITCOIN
-          </button>
-          <button
-            className="toggle"
-            onClick={(e) => {
-              setCoin('ethereum');
-              toggleActive(e);
-            }}
-          >
-            ETHEREUM
-          </button>
-        </div>
-      </header>
+      <Header onCoinChange={setCoin} />
       <div className="home">
         {/* Current Price */}
         <LayoutCard cardTitle="Current Prices" classNames="current-prices">
