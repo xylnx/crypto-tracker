@@ -103,8 +103,8 @@ function Chart({ coin, startDate, endDate }) {
 }
 
 function filterDates(d) {
-  console.log({ d });
-  // TODO: Catch the 1 day edge case
+  /** @todo Catch the 1 day edge case
+   */
   const lastIndex = d.prices.length - 1;
   return d.prices.filter((entry, index, array) => {
     const date = new Date(entry[0]);
