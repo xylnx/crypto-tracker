@@ -22,12 +22,10 @@ const Home = () => {
   const [endDate, setEndDate] = useState(null);
   const [isTable, setIsTable] = useState(false);
 
-  /*
-  const getDate = () => {
-    const date = new Date();
+  const toGermanDateString = (timestamp) => {
+    const date = new Date(timestamp);
     return date.toLocaleDateString('de-DE');
   };
-  */
 
   const handleChangeStartDate = (dateStr) => {
     setStartDate(toUnixTimestamp(dateStr));
@@ -67,6 +65,7 @@ const Home = () => {
         </div>
       </header>
       <div className="home">
+        {/* Current Price */}
         <LayoutCard cardTitle="Current Prices" classNames="current-prices">
           <div className="current-price">
             <span className="current-price__coin-name">Bitcoin:</span>
@@ -78,10 +77,19 @@ const Home = () => {
           </div>
         </LayoutCard>
 
+        {/* Compare prices: one week/month/any date */}
         <ComparePrices coin={coin} />
 
+        {/* Chart and Table */}
         <LayoutCard
-          cardTitle={`Price trend from ${startDate} to ${endDate}`}
+          cardTitle={`Price trend ${
+            startDate && endDate
+              ? 'from ' +
+                toGermanDateString(startDate) +
+                ' to ' +
+                toGermanDateString(endDate)
+              : ''
+          }`}
           classNames="chart"
           fullWidth={true}
         >
