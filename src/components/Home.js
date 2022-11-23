@@ -3,27 +3,42 @@ import { useState, useEffect } from 'react';
 
 // Components
 import { CoinPrice } from './CoinPrice';
-import { HistoricCoinPrice } from './HistoricCoinPrice';
 import { LayoutCard } from './LayoutCard';
-import { Button } from './Button';
-
 import { ComparePrices } from './ComparePrices';
-
+import { DatePicker } from './DatePicker';
 import { Chart } from './Chart';
-import { PriceTable } from './PriceTable';
+import { HistoricPriceTable } from './HistoricPriceTable';
 
 // Helpers
 import { toggleActive } from '../helpers/toogleActive';
+import { toUnixTimestamp } from '../helpers/toUnixTimestamp';
 
 // Styles
 import './Home.scss';
 
 const Home = () => {
   const [coin, setCoin] = useState('bitcoin');
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [isTable, setIsTable] = useState(false);
+
+  /*
   const getDate = () => {
     const date = new Date();
-
     return date.toLocaleDateString('de-DE');
+  };
+  */
+
+  const handleChangeStartDate = (dateStr) => {
+    setStartDate(toUnixTimestamp(dateStr));
+  };
+
+  const handleChangeEndDate = (dateStr) => {
+    setEndDate(toUnixTimestamp(dateStr));
+  };
+
+  const toggleTable = () => {
+    setIsTable((prevIsTable) => !prevIsTable);
   };
 
   return (
@@ -54,24 +69,42 @@ const Home = () => {
       <div className="home">
         <LayoutCard cardTitle="Current Prices" classNames="current-prices">
           <div className="current-price">
-            <span className="current-price__coin-name">Bitcoin</span>
+            <span className="current-price__coin-name">Bitcoin:</span>
             <CoinPrice coin="bitcoin" />
           </div>
           <div className="current-price">
-            <span className="current-price__coin-name">Ethereum</span>
+            <span className="current-price__coin-name">Ethereum:</span>
             <CoinPrice coin="ethereum" />
           </div>
         </LayoutCard>
+
         <ComparePrices coin={coin} />
+
         <LayoutCard
-          cardTitle={`Price trend since DATE`}
+          cardTitle={`Price trend from ${startDate} to ${endDate}`}
           classNames="chart"
           fullWidth={true}
         >
-          <Chart />
-        </LayoutCard>
-        <LayoutCard cardTitle="Table" classNames="table" fullWidth={true}>
-          <PriceTable />
+          <button onClick={toggleTable}>
+            {isTable ? 'Show chart' : 'Show Table'}
+          </button>
+          <div className="price-table__pick-date grid">
+            <DatePicker
+              onChangeDate={handleChangeStartDate}
+              dpLabel="start date"
+            />
+            <DatePicker onChangeDate={handleChangeEndDate} dpLabel="end date" />
+          </div>
+          {!isTable && (
+            <Chart coin={coin} startDate={startDate} endDate={endDate} />
+          )}
+          {isTable && (
+            <HistoricPriceTable
+              coin={coin}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          )}
         </LayoutCard>
       </div>
     </>

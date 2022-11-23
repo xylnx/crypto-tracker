@@ -6,8 +6,7 @@
 
 .current-prices .current-price {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: var(--gap);
+  grid-template-columns: 112px 1fr;
 }
 
 .current-price__coin-name {
@@ -22,9 +21,10 @@
     gap: var(--gap);
 
     &__current-price,
-    &__historic-price {
-      display: flex;
-      gap: var(--gap);
+    &__historic-price,
+    &__difference {
+      display: grid;
+      grid-template-columns: 112px 1fr;
     }
   }
   .coin-price--historic {
