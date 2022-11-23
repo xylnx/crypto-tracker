@@ -70,7 +70,6 @@ const ComparePrices = ({ coin }) => {
             <DatePicker
               onChangeDate={handleChangeDate}
               dpClasses="toggle grid-fw"
-              hasVisLabel={false}
             />
           </div>
 

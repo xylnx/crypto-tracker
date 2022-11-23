@@ -79,7 +79,8 @@ code {
 }
 
 button {
-  padding: 0.5em;
+  height: 32px;
+  padding: 0 0.5em;
   border: var(--border);
   border-radius: var(--border-radius);
   cursor: pointer;
@@ -122,20 +123,20 @@ header {
 
 // Date picker
 .date-picker {
-  height: 36.5px;
+  height: 32px;
   border: var(--border);
   color: var(--clr-text-400);
-  padding: 4px;
 
   &.label-visible {
     display: flex;
-    gap: var(--gap);
     border: 0;
 
     .date-picker__input {
       border: var(--border);
+      border-top-right-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
       color: var(--clr-text-400);
-      width: 240px;
+      width: 152px;
     }
   }
 }
@@ -143,7 +144,11 @@ header {
 .date-picker__label {
   display: flex;
   align-items: center;
-  color: var(--clr-accent);
+  border: 1px solid;
+  border-right-width: 0;
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  padding: var(--gap);
 }
 
 .date-picker__input {
@@ -170,7 +175,6 @@ header {
   border-color: var(--clr-accent);
   color: var(--clr-primary-400);
   background-color: var(--clr-accent);
-  padding: 0.5em;
   transition: var(--transition);
 
   &:hover {
@@ -213,4 +217,22 @@ header {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+.price-trend {
+  position: relative;
+
+  button {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+    margin-top: 0;
+  }
+
+  &__pick-dates {
+    display: flex;
+    justify-content: space-between;
+    margin-top: calc(var(--flow-space) * 3);
+    margin-bottom: calc(var(--flow-space) * 3);
+  }
 }

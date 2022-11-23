@@ -39,7 +39,7 @@ const PriceTable = () => {
         Compare Prices:{' '}
         <span className="price-table__heading--coin text-accent">{coin}</span>
       </h1>
-      <div className="price-table__choose-currency grid">
+      <div className="price-table__choose-currency">
         <button
           className="toggle active"
           onClick={(e) => {

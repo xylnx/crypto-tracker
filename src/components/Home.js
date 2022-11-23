@@ -82,26 +82,19 @@ const Home = () => {
 
         {/* Chart and Table */}
         <LayoutCard
-          cardTitle={`Price trend ${
-            startDate && endDate
-              ? 'from ' +
-                toGermanDateString(startDate) +
-                ' to ' +
-                toGermanDateString(endDate)
-              : ''
-          }`}
-          classNames="chart"
+          cardTitle={`${coin} Price Trend`}
+          classNames="price-trend"
           fullWidth={true}
         >
           <button onClick={toggleTable}>
             {isTable ? 'Show chart' : 'Show Table'}
           </button>
-          <div className="price-table__pick-date grid">
+          <div className="price-trend__pick-dates">
             <DatePicker
               onChangeDate={handleChangeStartDate}
-              dpLabel="start date"
+              dpLabel="Start Date"
             />
-            <DatePicker onChangeDate={handleChangeEndDate} dpLabel="end date" />
+            <DatePicker onChangeDate={handleChangeEndDate} dpLabel="End Date" />
           </div>
           {!isTable && (
             <Chart coin={coin} startDate={startDate} endDate={endDate} />

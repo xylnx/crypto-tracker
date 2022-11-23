@@ -1,10 +1,11 @@
+// Hooks
 import { useState, useEffect } from 'react';
-
 // Custom Hooks
 import { useFetch } from '../hooks/useFetch';
-
+// Components
 import { Spinner } from './Spinner';
 
+// ChartJS
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,6 +16,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+
 import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -27,11 +29,13 @@ ChartJS.register(
   Legend
 );
 
+// ChartJS options
 const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: 'bottom',
+      display: false,
     },
     title: {
       display: false,
@@ -40,8 +44,8 @@ const options = {
   },
 };
 
+// ChartJS: Data to be displayed => data obj will be updated in component
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
 const data = {
   labels,
   datasets: [
@@ -50,12 +54,6 @@ const data = {
       // data: ['12', '19', '3', '5', '2', '3'],
       borderColor: '#f1f2f4',
       backgroundColor: '#f1f2f4',
-    },
-    {
-      // label: 'Dataset 2',
-      // data: ['12', '19', '3', '5', '2', '3'].reverse(),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
 };
