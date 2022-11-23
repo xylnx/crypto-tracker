@@ -70,6 +70,7 @@ const ComparePrices = ({ coin }) => {
             <DatePicker
               onChangeDate={handleChangeDate}
               dpClasses="toggle grid-fw"
+              hasVisLabel={false}
             />
           </div>
 
@@ -89,7 +90,7 @@ const ComparePrices = ({ coin }) => {
             </div>
 
             {valChange && (
-              <div>
+              <div className="prices__difference">
                 <span class="text-accent">Change: </span>
                 <span>{valChange} %</span>
               </div>

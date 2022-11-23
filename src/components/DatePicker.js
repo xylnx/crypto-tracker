@@ -1,24 +1,38 @@
 import { useEffect } from 'react';
 
-const DatePicker = ({ onChangeDate, dpClasses = '', dpLabel } = {}) => {
+const DatePicker = ({
+  id,
+  dpLabel,
+  onChangeDate,
+  dpClasses = '',
+  hasVisLabel = true,
+} = {}) => {
   const handleChange = (e) => {
     onChangeDate(e.target.value);
   };
 
   useEffect(() => {
     setMaxDate(); // set max date to today's date
+    catchClickOnLabel();
   }, []);
 
   return (
-    <div className={`date-picker ${dpClasses}`}>
-      <label htmlFor="datePicker" className="date-picker__label sr-only">
+    <div
+      className={`date-picker ${dpClasses} ${
+        hasVisLabel ? 'label-visible' : ''
+      }`}
+    >
+      <label
+        htmlFor={id}
+        className={`${hasVisLabel ? '' : 'sr-only'} date-picker__label`}
+      >
         {dpLabel ? dpLabel : 'Pick a date:'}
       </label>
       <input
         onChange={handleChange}
         type="date"
-        id="datePicker"
-        className="date-picker__input"
+        id={id}
+        className={`date-picker__input `}
         name="date"
         min="2009-01-03"
         max="1970-01-01"
