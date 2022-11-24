@@ -63,10 +63,10 @@ const ChartAndTable = ({ coin }) => {
           dpLabel="End Date"
         />
       </div>
-      {!isTable && (
+      {!isTable && startDate && endDate && (
         <Chart coin={coin} startDate={startDate} endDate={endDate} />
       )}
-      {isTable && (
+      {isTable && startDate && endDate && (
         <HistoricPriceTable
           coin={coin}
           startDate={startDate}
