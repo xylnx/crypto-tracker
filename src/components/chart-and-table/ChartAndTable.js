@@ -1,5 +1,5 @@
 // Hooks
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Components
 import { LayoutCard } from '../LayoutCard';
@@ -13,10 +13,11 @@ import { IconChart } from '../icons/IconChart';
 
 // Helpers
 import { toUnixTimestamp } from '../../helpers/toUnixTimestamp';
+import { createDateString } from '../../helpers/createDateString';
 
 const ChartAndTable = ({ coin }) => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState(undefined);
+  const [endDate, setEndDate] = useState(undefined);
   const [isTable, setIsTable] = useState(false);
 
   const handleChangeStartDate = (dateStr) => {
@@ -31,6 +32,16 @@ const ChartAndTable = ({ coin }) => {
   const toggleTable = () => {
     setIsTable((prevIsTable) => !prevIsTable);
   };
+
+  useEffect(() => {
+    /** Load price trend of the last week */
+    const dateStrNow = createDateString({ reverse: true });
+    const dateStrAWeekAgo = createDateString({ offsetDay: -7, reverse: true });
+    const now = new Date(dateStrNow);
+    const awg = new Date(dateStrAWeekAgo);
+    setStartDate(toUnixTimestamp(dateStrAWeekAgo));
+    setEndDate(toUnixTimestamp(dateStrNow));
+  }, []);
 
   return (
     <LayoutCard
