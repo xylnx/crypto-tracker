@@ -64,7 +64,7 @@ function Chart({ coin, startDate, endDate }) {
   // const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
   const _url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=eur&from=${startDate}&to=${endDate}`;
 
-  console.log({ _url });
+  // console.log({ _url });
   const { data: coinData, isPending } = useFetch(_url);
 
   useEffect(() => {

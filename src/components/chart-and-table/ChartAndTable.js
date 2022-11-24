@@ -22,7 +22,6 @@ const ChartAndTable = ({ coin }) => {
 
   const handleChangeStartDate = (dateStr) => {
     setStartDate(toUnixTimestamp(dateStr));
-    console.log('Change Start Date');
   };
 
   const handleChangeEndDate = (dateStr) => {
@@ -37,8 +36,6 @@ const ChartAndTable = ({ coin }) => {
     /** Load price trend of the last week */
     const dateStrNow = createDateString({ reverse: true });
     const dateStrAWeekAgo = createDateString({ offsetDay: -7, reverse: true });
-    const now = new Date(dateStrNow);
-    const awg = new Date(dateStrAWeekAgo);
     setStartDate(toUnixTimestamp(dateStrAWeekAgo));
     setEndDate(toUnixTimestamp(dateStrNow));
   }, []);

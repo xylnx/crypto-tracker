@@ -32,7 +32,7 @@ const HistoricCoinPrice = ({
     let newPrice = data?.market_data?.current_price?.eur;
     setPrevCoinPrice(newPrice.toFixed(2));
     onPriceChange(newPrice);
-  }, [data]);
+  }, [data, onPriceChange]);
 
   return (
     <>
