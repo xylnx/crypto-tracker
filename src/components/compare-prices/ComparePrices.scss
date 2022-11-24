@@ -1,0 +1,11 @@
+.compare-prices {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--gap) * 3);
+  }
+  &__choose-time-span {
+    display: flex;
+    gap: var(--gap);
+  }
+}
