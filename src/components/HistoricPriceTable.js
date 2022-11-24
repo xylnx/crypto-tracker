@@ -10,10 +10,10 @@ import './HistoricPriceTable.scss';
 
 const HistoricPriceTable = ({ startDate, endDate, coin }) => {
   const _url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart/range?vs_currency=eur&from=${startDate}&to=${endDate}`;
-  const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
-
-  // const { data, isPending } = useFetch(_devUrl);
   const { data, isPending } = useFetch(_url);
+
+  // const _devUrl = 'http://localhost:3004/market_chart/bitcoin';
+  // const { data, isPending } = useFetch(_devUrl);
 
   return (
     <div className="price-table__table">
