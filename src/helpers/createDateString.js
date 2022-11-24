@@ -1,4 +1,9 @@
-function createDateString({ date = 0, offsetDay = 0, offsetMonth = 0 } = {}) {
+function createDateString({
+  date = 0,
+  offsetDay = 0,
+  offsetMonth = 0,
+  reverse = false,
+} = {}) {
   let _date;
   if (date) {
     _date = new Date(date);
@@ -18,7 +23,8 @@ function createDateString({ date = 0, offsetDay = 0, offsetMonth = 0 } = {}) {
 
   // From API docs:
   // The date of data snapshot in dd-mm-yyyy eg. 30-12-2017
-  const dateString = `${day}-${month}-${year}`;
+  let dateString = `${day}-${month}-${year}`;
+  if (reverse) dateString = `${year}-${month}-${day}`;
   return dateString;
 }
 
